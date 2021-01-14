@@ -22,11 +22,28 @@ public class TicTacToeGame {
         }
     }
 
+    public void printBoard() {
+        String horizontalPart = "+---";
+        String verticalPart = "|   ";
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(horizontalPart);
+            }
+            System.out.print("+\n");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(verticalPart);
+            }
+            System.out.print("+\n");
+        }
+
+    }
+
     public static void main(String[] args) throws Exception {
         System.out.println("Wlcome to Tic Tac Toe!");
         TicTacToeGame ticTacToeGame = new TicTacToeGame();
         Scanner scanner = new Scanner(System.in);
         ticTacToeGame.createBoard();
         ticTacToeGame.getUserInput(scanner.next());
+        ticTacToeGame.printBoard();
     }
 }
