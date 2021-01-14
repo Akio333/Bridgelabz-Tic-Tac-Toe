@@ -23,19 +23,25 @@ public class TicTacToeGame {
     }
 
     public void printBoard() {
-        String horizontalPart = "+---";
-        String verticalPart = "|   ";
+        String horizontalPart = "+---+---+---+";
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(horizontalPart);
+            System.out.println(horizontalPart);
+            for (int j = 1; j < 4; j++) {
+                System.out.print("| " + board[i * 3 + j] + " ");
             }
-            System.out.print("+\n");
-            for (int j = 0; j < 3; j++) {
-                System.out.print(verticalPart);
-            }
-            System.out.print("+\n");
+            System.out.print("|\n");
         }
+        System.out.print(horizontalPart);
+        System.out.print("\n");
+    }
 
+    public void makeMove(int i) {
+        if (board[i] == ' ') {
+            board[i] = userSymbol;
+        } else {
+            System.out.println("Already occupied place.");
+        }
+        printBoard();
     }
 
     public static void main(String[] args) throws Exception {
@@ -43,7 +49,10 @@ public class TicTacToeGame {
         TicTacToeGame ticTacToeGame = new TicTacToeGame();
         Scanner scanner = new Scanner(System.in);
         ticTacToeGame.createBoard();
+        System.out.println("Choose Your Symbol (O or X): ");
         ticTacToeGame.getUserInput(scanner.next());
         ticTacToeGame.printBoard();
+        System.out.println("Enter Move (1-9): ");
+        ticTacToeGame.makeMove(scanner.nextInt());
     }
 }
