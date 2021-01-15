@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class TicTacToeGame {
     public char board[] = new char[10];
     public char userSymbol, computerSymbol;
+    public int player = 0;
+    public boolean play = true;
 
     public void createBoard() {
         for (int i = 1; i < 10; i++) {
@@ -35,13 +37,20 @@ public class TicTacToeGame {
         System.out.print("\n");
     }
 
-    public void makeMove(int i) {
-        if (board[i] == ' ') {
-            board[i] = userSymbol;
+    public boolean makeMove(int index, int player) {
+        if (board[index] == ' ') {
+            if (player == 0) {
+                System.out.println("Computer played: ");
+                board[index] = computerSymbol;
+            } else {
+                System.out.println("Player played: ");
+                board[index] = userSymbol;
+            }
+            printBoard();
+            return false;
         } else {
-            System.out.println("Already occupied place.");
+            return true;
         }
-        printBoard();
     }
 
     public static void main(String[] args) throws Exception {
@@ -53,6 +62,8 @@ public class TicTacToeGame {
         ticTacToeGame.getUserInput(scanner.next());
         ticTacToeGame.printBoard();
         System.out.println("Enter Move (1-9): ");
-        ticTacToeGame.makeMove(scanner.nextInt());
+        while (ticTacToeGame.play) {
+            ticTacToeGame.play = ticTacToeGame.makeMove(scanner.nextInt(), 1);
+        }
     }
 }
