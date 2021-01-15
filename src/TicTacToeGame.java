@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -53,11 +54,24 @@ public class TicTacToeGame {
         }
     }
 
+    public void tossForFirstPlay(String toss) {
+        int i = (int) Math.round(Math.random()) % 2;
+        if ((i == 1 && toss.equals("H")) || (i == 0 && toss.equals("T"))) {
+            System.out.println("Congratulations! You've won the Toss.");
+            player = 1;
+        } else {
+            System.out.println("You've lost Toss. Computer plays first.");
+            player = 0;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         System.out.println("Wlcome to Tic Tac Toe!");
         TicTacToeGame ticTacToeGame = new TicTacToeGame();
         Scanner scanner = new Scanner(System.in);
         ticTacToeGame.createBoard();
+        System.out.println("Enter Toss (H or T):");
+        ticTacToeGame.tossForFirstPlay(scanner.next());
         System.out.println("Choose Your Symbol (O or X): ");
         ticTacToeGame.getUserInput(scanner.next());
         ticTacToeGame.printBoard();
